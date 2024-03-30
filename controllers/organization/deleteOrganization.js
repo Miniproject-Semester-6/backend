@@ -4,7 +4,7 @@ const AppError = require("../../utils/appError");
 const deleteOrganization = async (req, res, next) => {
   try {
     const organization = await Organization.findByIdAndDelete(
-      req.params.organizationId,
+      req.params.id,
     );
 
     if (!organization) return next(new AppError("Organization not found", 404));

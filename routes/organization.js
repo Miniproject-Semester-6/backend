@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.route("/").get(getAllOrganization).post(createOrganization);
 router
-  .route("/:organizationId")
+  .route("/:id")
   .get(getOrganization)
   .patch(updateOrganization)
   .delete(deleteOrganization);

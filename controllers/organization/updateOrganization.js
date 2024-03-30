@@ -4,7 +4,7 @@ const AppError = require("../../utils/appError");
 const updateOrganization = async (req, res, next) => {
   try {
     const organization = await Organization.findByIdAndUpdate(
-      req.params.organizationId,
+      req.params.id,
       req.body,
       {
         new: true,

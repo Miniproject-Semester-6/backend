@@ -3,7 +3,7 @@ const AppError = require("../../utils/appError");
 
 const getOrganization = async (req, res, next) => {
   try {
-    const organization = await Organization.findById(req.params.organizationId);
+    const organization = await Organization.findById(req.params.id);
 
     if (!organization) return next(new AppError("Organization not found", 404));
 
