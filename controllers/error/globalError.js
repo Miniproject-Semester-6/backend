@@ -25,16 +25,14 @@ const handleValidationErrorDB = (err) => {
 const globalError = (error, req, res, next) => {
   console.log("💥 Error 💥", error);
 
-  let err = { ...error };
+  if (error.name === "CastError") error = handleCastErrorDB(error);
+  if (error.code === 11000) error = handleDuplicateFieldsDB(error);
+  if (error.name === "ValidationError") error = handleValidationErrorDB(error);
 
-  if (error.name === "CastError") err = handleCastErrorDB(err);
-  if (error.code === 11000) err = handleDuplicateFieldsDB(err);
-  if (error.name === "ValidationError") err = handleValidationErrorDB(err);
-
-  res.status(err.statusCode || 500).json({
-    status: err.status || "error",
-    message: err.message,
-    isOperational: err.isOperational || false,
+  res.status(error.statusCode || 500).json({
+    status: error.status || "error",
+    message: error.message,
+    isOperational: error.isOperational || false,
   });
 };
 
