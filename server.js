@@ -1,6 +1,11 @@
 const app = require("./app");
 const mongoose = require("mongoose");
 
+process.on("uncaughtException", (err) => {
+  console.log("Uncaught Exception!");
+  console.error(err);
+});
+
 mongoose
   .connect(
     process.env.NODE_ENV === "production"
@@ -17,4 +22,9 @@ mongoose
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+});
+
+process.on("unhandledRejection", (err) => {
+  console.log("Unhandled Rejection!");
+  console.error(err);
 });
