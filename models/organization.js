@@ -36,6 +36,11 @@ const organizationSchema = new mongoose.Schema({
   },
 });
 
+organizationSchema.pre("save", async function (next) {
+  await this.validate();
+  next();
+});
+
 const Organization = mongoose.model("Organization", organizationSchema);
 
 module.exports = Organization;
