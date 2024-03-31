@@ -5,7 +5,7 @@ const getAllExpense = async (req, res, next) => {
     const query = {};
     if (req.query.budgetid) query.budget = req.query.budgetid;
 
-    const expenses = await Expense.find(query);
+    const expenses = await Expense.find(query).populate("budget");
 
     res.status(200).json({
       status: "success",
