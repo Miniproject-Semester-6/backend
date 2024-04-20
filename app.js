@@ -2,7 +2,7 @@ const express = require("express");
 const env = require("dotenv");
 const morgan = require("morgan");
 
-// const authRouter = require("./routes/auth");
+const authRouter = require("./routes/auth");
 // const userRouter = require("./routes/user");
 const organizationRouter = require("./routes/organization");
 const userOrganization = require("./routes/userOrganization");
@@ -20,7 +20,7 @@ const app = express();
 app.use(morgan("dev"));
 app.use(express.json());
 
-// app.use("/api/auth", authRouter);
+app.use("/api/auth", authRouter);
 // app.use("/api/user", userRouter);
 app.use("/api/organization", organizationRouter);
 app.use("/api/linkUserOrganization", userOrganization);
