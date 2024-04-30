@@ -23,7 +23,7 @@ app.use(express.json());
 app.use("/api/auth", authRouter);
 // app.use("/api/user", userRouter);
 app.use("/api/organization", organizationRouter);
-app.use("/api/linkUserOrganization", userOrganization);
+app.use("/api/userOrganization", userOrganization);
 app.use("/api/budget", budgetRouter);
 app.use("/api/expense", expenseRouter);
 

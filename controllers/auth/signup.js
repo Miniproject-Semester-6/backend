@@ -8,7 +8,6 @@ const signup = async (req, res, next) => {
       status: "success",
       data: {
         user,
-        token,
       },
     });
   } catch (error) {

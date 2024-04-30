@@ -29,6 +29,14 @@ const userSchema = new mongoose.Schema({
     },
     message: "Passwords are not the same",
   },
+  role: {
+    type: String,
+    enum: {
+      values: ["user", "SUPER_ADMIN"],
+      message: "{VALUE} not allowed. Role is either: user or admin",
+    },
+    default: "user",
+  },
   createdAt: {
     type: Date,
     default: Date.now,
