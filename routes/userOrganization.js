@@ -1,11 +1,15 @@
 const express = require("express");
 const {
   linkUserOrganization,
+  getUserOrganization,
 } = require("../controllers/userOrganization/exports");
 const { authorize, protect } = require("../middlewares/auth/authorization");
 
 const router = express.Router();
 
-router.route("/").post(protect, authorize, linkUserOrganization);
+router
+  .route("/")
+  .get(protect, getUserOrganization)
+  .post(protect, authorize, linkUserOrganization);
 
 module.exports = router;
