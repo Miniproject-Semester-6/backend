@@ -1,6 +1,7 @@
 const express = require("express");
 const env = require("dotenv");
 const morgan = require("morgan");
+const cors = require("cors");
 
 const authRouter = require("./routes/auth");
 // const userRouter = require("./routes/user");
@@ -17,6 +18,8 @@ env.config({
 });
 
 const app = express();
+
+app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 
