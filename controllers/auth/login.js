@@ -23,6 +23,7 @@ const login = async (req, res, next) => {
       status: "success",
       data: {
         token,
+        username: user.name,
       },
     });
   } catch (error) {

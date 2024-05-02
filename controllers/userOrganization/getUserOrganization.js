@@ -10,8 +10,8 @@ const getUserOrganization = async (req, res, next) => {
 
     const formattedData = userOrg.map((userOrg) => {
       return {
-        orgid: userOrg.organization._id,
-        orgname: userOrg.organization.name,
+        id: userOrg.organization._id,
+        name: userOrg.organization.name,
         role: userOrg.role,
       };
     });

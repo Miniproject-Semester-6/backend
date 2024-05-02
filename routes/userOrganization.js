@@ -10,6 +10,6 @@ const router = express.Router();
 router
   .route("/")
   .get(protect, getUserOrganization)
-  .post(protect, authorize, linkUserOrganization);
+  .post(protect, linkUserOrganization);
 
 module.exports = router;

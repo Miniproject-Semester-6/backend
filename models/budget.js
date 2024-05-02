@@ -30,6 +30,9 @@ const budgetSchema = new mongoose.Schema({
     ref: "Organization",
     required: [true, "A budget must have a organization"],
   },
+  color: {
+    type: String,
+  },
   createdAt: {
     type: Date,
     default: Date.now(),
@@ -37,6 +40,8 @@ const budgetSchema = new mongoose.Schema({
 });
 
 budgetSchema.pre("save", async function (next) {
+  if (!this.isModified("spend")) this.color = `${Math.random() * 100} 65% 50%`;
+
   await this.validate();
   next();
 });
