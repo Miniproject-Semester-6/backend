@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const validateSpend = require("../validators/spend");
+const colorArray = require("../utils/colorArray");
 
 const budgetSchema = new mongoose.Schema({
   name: {
@@ -40,7 +41,11 @@ const budgetSchema = new mongoose.Schema({
 });
 
 budgetSchema.pre("save", async function (next) {
-  if (!this.isModified("spend")) this.color = `${Math.random() * 100} 65% 50%`;
+  if (!this.isModified("spend")) {
+    const count = await this.constructor.countDocuments({});
+
+    this.color = colorArray[count % 13];
+  }
 
   await this.validate();
   next();
