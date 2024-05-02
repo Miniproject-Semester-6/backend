@@ -23,7 +23,7 @@ const budgetSchema = new mongoose.Schema({
       validator: function (spend) {
         return validateSpend(spend, this.amount);
       },
-      message: "Spend should be less than amount of budget",
+      message: "Insufficient budget, please enter a less amount.",
     },
   },
   organization: {
