@@ -3,7 +3,8 @@ const AppError = require("../../utils/appError");
 
 const getAllOrganization = async (req, res, next) => {
   try {
-    const user = { req };
+    const { user } = req;
+
     if (user.role !== "SUPER_ADMIN")
       return next(new AppError("You are not authorised for this action!", 403));
 
