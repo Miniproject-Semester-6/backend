@@ -5,6 +5,6 @@ const { protect } = require("../middlewares/auth/authorization");
 
 const router = express.Router();
 
-router.route("/forecast").post(protect, forecast);
+router.route("/forecast").get(protect, forecast);
 
 module.exports = router;
