@@ -9,6 +9,7 @@ const organizationRouter = require("./routes/organization");
 const userOrganization = require("./routes/userOrganization");
 const budgetRouter = require("./routes/budget");
 const expenseRouter = require("./routes/expense");
+const gen_modelsRouter = require("./routes/gen_models");
 
 const AppError = require("./utils/appError");
 const globalError = require("./controllers/error/globalError");
@@ -29,6 +30,7 @@ app.use("/api/organization", organizationRouter);
 app.use("/api/userOrganization", userOrganization);
 app.use("/api/budget", budgetRouter);
 app.use("/api/expense", expenseRouter);
+app.use("/api/models", gen_modelsRouter);
 
 app.all("*", (req, res, next) => {
   const error = new AppError(
