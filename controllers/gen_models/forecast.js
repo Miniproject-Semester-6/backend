@@ -26,22 +26,12 @@ const forecast = async (req, res, next) => {
       .sort({ createdAt: -1 })
       .limit(90);
 
-    const aggregatedExpenses = expenses.reduce((acc, expense) => {
-      const dateKey = new Date(expense.createdAt).toISOString().split("T")[0];
-
-      if (!acc[dateKey]) {
-        acc[dateKey] = {
-          totalExpenses: 0,
-          date: dateKey,
-        };
-      }
-
-      acc[dateKey].totalExpenses += expense.amount;
-
-      return acc;
-    }, {});
-
-    const formattedExpenses = Object.values(aggregatedExpenses);
+    const formattedExpenses = expenses.map((expense) => {
+      return {
+        expenses: expense.amount,
+        date: expense.createdAt,
+      };
+    });
 
     const response = await modelsClient({
       method: "POST",
